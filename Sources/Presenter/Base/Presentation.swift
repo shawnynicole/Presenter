@@ -7,9 +7,10 @@
 
 import SwiftUI
 import Colors
+import Print
 
 /// Call .presents on the "label" view
-public struct Presentation<Label: View, Content: View>: View {
+public struct Presentation<Label: View, Content: View>: View, Print {
     
     // MARK: - Controller
     
@@ -95,7 +96,15 @@ public struct Presentation<Label: View, Content: View>: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .onTapGesture {
                     if dismissOnExternalTap {
-                        isPresenting = false // IMPORTANT: Do not call dismiss(). dismiss() DOES NOT update isPresenting. isPresenting DOES call dismiss()
+                        if isPresenting {
+                            // IMPORTANT: Do not call dismiss(). dismiss() DOES NOT update isPresenting. isPresenting DOES call dismiss()
+                            isPresenting = false
+                        } else {
+                            // BUG: When Presentation is used as a navigation bar leading or trailing button,
+                            // isPresenting will be false even though the presenter is still presenting.
+                            // Call dismiss manually.
+                            dismiss()
+                        }
                     }
                 }
                 .geometryReader { proxy in

@@ -21,6 +21,7 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         .package(name: "Border", url: "https://github.com/shawnynicole/Border", from: "1.3.0"),
         .package(name: "Colors", url: "https://github.com/shawnynicole/Colors", from: "1.0.0"),
+        .package(name: "Print", url: "https://github.com/shawnynicole/Print", from: "1.0.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -30,6 +31,7 @@ let package = Package(
             dependencies: [
                 .product(name: "Border", package: "Border"),
                 .product(name: "Colors", package: "Colors"),
+                .product(name: "Print", package: "Print"),
             ]),
         .testTarget(
             name: "PresenterTests",

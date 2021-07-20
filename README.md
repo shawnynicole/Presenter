@@ -22,7 +22,7 @@ let package = Package(
     name: "YOUR_PROJECT_NAME",
     targets: [],
     dependencies: [
-        .package(url: "https://github.com/shawnynicole/Presenter.git", from: "1.0.0")
+        .package(url: "https://github.com/shawnynicole/Presenter.git", from: "1.0.1")
     ]
 )
 ```
